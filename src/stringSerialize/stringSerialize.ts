@@ -1,46 +1,32 @@
 import { bit4number, codes, maxNumberPerChar } from './constants.ts';
 
+type SerializeFormat = 'oneChar' | 'twoChar'
+type RepeatValue = [count: number, value: number]
+
 const binStringToCode = (binStr: string) => codes[parseInt(binStr, 2)]
 function convertNumberToChar(value: number) {
   const binValue = value.toString(2).padStart(bit4number * 2, '0')
   
   return `${binStringToCode(binValue.substring(0, 6))}${binStringToCode(binValue.substring(6))}`
 }
-function serializeOneCharData(data: number[]) {
+
+function serializeNumbers(data: number[], format: SerializeFormat = 'twoChar') {
   let result = convertNumberToChar(data.length)
   
   for (const value of data) {
-    result += convertNumberToChar(value)[1]
+    const charValue = convertNumberToChar(value)
+    result += format === 'twoChar' ? charValue : charValue[1]
   }
   
   return result
 }
 
-function serializeTwoCharData(data: number[]) {
-  let result = convertNumberToChar(data.length)
-  
-  for (const value of data) {
-    result += convertNumberToChar(value)
-  }
-  
-  return result
-}
-
-function serializeOneCharRepeatData(data: [count: number, value: number][]) {
+function serializeRepeatNumber(data: RepeatValue[], format: SerializeFormat = 'twoChar') {
   let result = convertNumberToChar(data.length)
   
   for (const [count, value] of data) {
-    result += convertNumberToChar(value)[1] + convertNumberToChar(count)
-  }
-  
-  return result
-}
-
-function serializeTwoCharRepeatData(data: [count: number, value: number][]) {
-  let result = convertNumberToChar(data.length)
-  
-  for (const [count, value] of data) {
-    result += convertNumberToChar(value) + convertNumberToChar(count)
+    const charValue = convertNumberToChar(value)
+    result += (format === 'twoChar' ? charValue : charValue[1]) + convertNumberToChar(count)
   }
   
   return result
@@ -49,8 +35,8 @@ function serializeTwoCharRepeatData(data: [count: number, value: number][]) {
 const stringSerialize = (data: number[]) => {
   const singleCharGroup: number[] = []
   const twoCharGroup: number[] = []
-  const singleCharRepeatGroup: [count: number, value: number][] = []
-  const twoCharRepatGroup: [count: number, value: number][] = []
+  const singleCharRepeatGroup: RepeatValue[] = []
+  const twoCharRepatGroup: RepeatValue[] = []
   const sortedData = data.toSorted((a, b) => a - b)
   
   let lastValue: number = sortedData[0]
@@ -87,10 +73,10 @@ const stringSerialize = (data: number[]) => {
   
   groupValue()
 
-  return serializeOneCharData(singleCharGroup) +
-    serializeTwoCharData(twoCharGroup) +
-    serializeOneCharRepeatData(singleCharRepeatGroup) +
-    serializeTwoCharRepeatData(twoCharRepatGroup)
+  return serializeNumbers(singleCharGroup, 'oneChar') +
+    serializeNumbers(twoCharGroup) +
+    serializeRepeatNumber(singleCharRepeatGroup, 'oneChar') +
+    serializeRepeatNumber(twoCharRepatGroup)
 }
 
 export default stringSerialize
