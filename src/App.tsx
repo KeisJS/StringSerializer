@@ -20,8 +20,8 @@ function App() {
             source,
             serialized,
             serializeData
-          }) => (
-          <tr>
+          }, index) => (
+          <tr key={index}>
             <td>{ description }</td>
             <td>{ source }</td>
             <td>{ serialized }</td>

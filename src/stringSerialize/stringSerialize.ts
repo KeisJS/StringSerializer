@@ -16,16 +16,31 @@ function serializeOneCharData(data: number[]) {
   return result
 }
 
+function serializeTwoCharData(data: number[]) {
+  let result = convertNumberToChar(data.length)
+  
+  for (const value of data) {
+    result += convertNumberToChar(value)
+  }
+  
+  return result
+}
+
 const stringSerialize = (data: number[]) => {
   const singleCharGroup: number[] = []
+  const twoCharGroup: number[] = []
   const sortedData = data.toSorted((a, b) => a - b)
   
   let lastValue: number = sortedData[0]
   let countValue: number = 1
   
   const groupValue = () => {
-    if (lastValue < maxNumberPerChar && countValue === 1) {
-      singleCharGroup.push(lastValue)
+    if (countValue === 1) {
+      if (lastValue < maxNumberPerChar) {
+        singleCharGroup.push(lastValue)
+      } else {
+        twoCharGroup.push(lastValue)
+      }
     }
   }
   
@@ -43,7 +58,7 @@ const stringSerialize = (data: number[]) => {
   groupValue()
   
   
-  return serializeOneCharData(singleCharGroup)
+  return serializeOneCharData(singleCharGroup) + serializeTwoCharData(twoCharGroup)
 }
 
 export default stringSerialize

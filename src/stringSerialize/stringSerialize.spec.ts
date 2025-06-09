@@ -3,7 +3,8 @@ import stringSerialize from './stringSerialize.ts';
 
 describe('Test String serialize feature', () => {
   const testData: [number[], string][] = [
-    [[1, 15, 35], 'ADBPj'],
+    [[1, 15, 35], 'ADBPjAA'],
+    [[101, 150, 299], 'AAADBlCWEr']
   ]
   
   test.each(testData)('%s -> %s', (data, result) => {

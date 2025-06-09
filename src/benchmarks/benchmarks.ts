@@ -1,7 +1,9 @@
 import { singleSignValues } from './singleSignValues.ts';
+import { twoCharsValues } from './twoCharsValues.ts';
 
 const benchmarks = [
-  singleSignValues()
+  singleSignValues(),
+  twoCharsValues()
 ]
 
 export {
