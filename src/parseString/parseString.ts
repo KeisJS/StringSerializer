@@ -15,16 +15,18 @@ function code2number(value: string) {
   
   return parseInt(`${firstPart}${secondPart}`, 2)
 }
-function parseSingleCharData(data: StringValue, result: number[]) {
+function parseSingleCharData(data: StringValue, result: number[], charLength: number = 1) {
   const { value, offset } = data
   let currentOffset = offset + 2
-  const maxOffset = currentOffset + code2number(data.value.substring(0, 2))
+  const maxOffset = currentOffset + code2number(data.value.substring(offset, offset + 2)) * charLength
   
   while (currentOffset < maxOffset) {
-    result.push(code2number(value[currentOffset]))
+    result.push(code2number(value.substring(currentOffset, currentOffset + charLength)))
     
-    currentOffset++
+    currentOffset = currentOffset + charLength
   }
+  
+  data.offset = currentOffset
 }
 
 const parseString = (data: string) => {
@@ -35,7 +37,8 @@ const parseString = (data: string) => {
   
   const result: number[] = []
   const parsers = [
-    parseSingleCharData.bind(undefined, stringValue, result)
+    parseSingleCharData.bind(undefined, stringValue, result),
+    parseSingleCharData.bind(undefined, stringValue, result, 2)
   ]
   
   for (const parser of parsers) {
