@@ -7,7 +7,7 @@ const binStringToCode = (binStr: string) => codes[parseInt(binStr, 2)]
 function convertNumberToChar(value: number) {
   const binValue = value.toString(2).padStart(bit4number * 2, '0')
   
-  return `${binStringToCode(binValue.substring(0, 6))}${binStringToCode(binValue.substring(6))}`
+  return `${binStringToCode(binValue.substring(0, bit4number))}${binStringToCode(binValue.substring(bit4number))}`
 }
 
 function serializeNumbers(data: number[], format: SerializeFormat = 'twoChar') {
