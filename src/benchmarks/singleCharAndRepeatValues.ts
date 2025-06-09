@@ -1,9 +1,9 @@
 import stringSerialize from '../stringSerialize/stringSerialize.ts';
 import { getFormatSerializedData } from './utils.ts';
 
-const singleSignValues = () => {
-  const description = 'числа одного знака'
-  const data = Array(9).fill('').map((_v, index) => index + 1)
+const singleCharAndRepeatValues = () => {
+  const description = 'числа одного знака с повторением'
+  const data = Array(20).fill('').map((_v, index) => index % 3 + 1)
   const source = JSON.stringify(data)
   const serialized = stringSerialize(data)
   const serializeData = getFormatSerializedData(source, serialized)
@@ -18,5 +18,5 @@ const singleSignValues = () => {
 }
 
 export {
-  singleSignValues
+  singleCharAndRepeatValues
 }
