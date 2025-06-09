@@ -36,10 +36,21 @@ function serializeOneCharRepeatData(data: [count: number, value: number][]) {
   return result
 }
 
+function serializeTwoCharRepeatData(data: [count: number, value: number][]) {
+  let result = convertNumberToChar(data.length)
+  
+  for (const [count, value] of data) {
+    result += convertNumberToChar(value) + convertNumberToChar(count)
+  }
+  
+  return result
+}
+
 const stringSerialize = (data: number[]) => {
   const singleCharGroup: number[] = []
   const twoCharGroup: number[] = []
   const singleCharRepeatGroup: [count: number, value: number][] = []
+  const twoCharRepatGroup: [count: number, value: number][] = []
   const sortedData = data.toSorted((a, b) => a - b)
   
   let lastValue: number = sortedData[0]
@@ -55,6 +66,8 @@ const stringSerialize = (data: number[]) => {
     } else {
       if (lastValue < maxNumberPerChar) {
         singleCharRepeatGroup.push([ countValue, lastValue])
+      } else {
+        twoCharRepatGroup.push([ countValue, lastValue ])
       }
     }
   }
@@ -76,7 +89,8 @@ const stringSerialize = (data: number[]) => {
 
   return serializeOneCharData(singleCharGroup) +
     serializeTwoCharData(twoCharGroup) +
-    serializeOneCharRepeatData(singleCharRepeatGroup)
+    serializeOneCharRepeatData(singleCharRepeatGroup) +
+    serializeTwoCharRepeatData(twoCharRepatGroup)
 }
 
 export default stringSerialize
