@@ -12,6 +12,7 @@ function App() {
             <thead>
             <tr className="align-middle">
               <th>Тип теста</th>
+              <th>Длина массива</th>
               <th>Исходная строка</th>
               <th>Сжатая строка</th>
               <th>
@@ -22,13 +23,15 @@ function App() {
             </thead>
             <tbody>
             { benchmarks.map(({
-                                description,
-                                source,
-                                serialized,
-                                serializeData
-                              }, index) => (
+              description,
+              source,
+              serialized,
+              serializeData,
+              data
+            }, index) => (
               <tr key={index}>
                 <td>{ description }</td>
+                <td>{ data.length }</td>
                 <td className="text-break">{ source }</td>
                 <td className="text-break">{ serialized }</td>
                 <td>{ serializeData }</td>
