@@ -1,54 +1,52 @@
-# React + TypeScript + Vite
+## Описание
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Условие:
+- Есть множество (массив, где порядок не важен) целых чисел в диапазоне от 1 до 300.
+- Количество чисел - до 1000.
 
-Currently, two official plugins are available:
+Требуется написать функцию сериализации / десериализации и набор тестов демонстрирующих работу.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Требования к реализации:
+- сериализованная строка должна быть
+    - компактной
+    - содержать только ASCII символы
+    - должна быть в среднем на 50% короче отностильено простой сериализации
 
-## Expanding the ESLint configuration
+Требования к содержанию и представлению тестов:
+- исходная строка, сжатая строка, коэффициент сжатия.
+    - примеры тестов:
+    - простейшие короткие
+    - случайные - 50 чисел, 100 чисел, 500 чисел, 1000 чисел
+    - граничные - все числа 1 знака, все числа из 2х знаков, все числа из 3х знаков, каждого числа по 3 - всего чисел 900
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+Решение:
+- числа будут кодироваться в символы из набора символов: `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_`
+- каждое число переводится в двоичную систему счисления и делится на группы по 6 бит. Каждой группе соотвествует символ из набора символов
+- формат сериализованных чисел, где count - это счетчик кодированный 2-мя символами
+    - `[count][char]`
+    - `[count][<char><char>]`
+    - `[count][<char>(<char><char>)]`: где <char><char> количество повторений первого <char>. Скобки использованы для наглядности
+    - `[count][(<char><char>)(<char><char>)]`: как предыдущий пункт, но число представляется 2-мя символами
+- сериализованная строка:
+```
+[count][char][count][<char><char>][count][<char>(<char><char>)][count][(<char><char>)(<char><char>)]
+```
+## Настройка
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+Подготовка yarn
+
+```bash
+# включить corepack
+corepack enable
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Установить зависимостей
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+```bash
+yarn install
+```
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
+### Сервер разработки
+```bash
+yarn dev
 ```
