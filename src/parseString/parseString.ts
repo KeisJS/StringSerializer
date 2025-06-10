@@ -1,4 +1,4 @@
-import { bit4number, codes } from '../stringSerialize/constants.ts'
+import { bit4number, codes, countCharLength } from '../constants.ts'
 
 type StringValue = {
   value: string
@@ -15,15 +15,35 @@ function code2number(value: string) {
   
   return parseInt(`${firstPart}${secondPart}`, 2)
 }
-function parseSingleCharData(data: StringValue, result: number[], charLength: number = 1) {
+function parseSingleCharData(data: StringValue, result: number[], charLength: 1 | 2 = 1) {
   const { value, offset } = data
-  let currentOffset = offset + 2
-  const maxOffset = currentOffset + code2number(data.value.substring(offset, offset + 2)) * charLength
+  let currentOffset = offset + countCharLength
+  const maxOffset = currentOffset + code2number(value.substring(offset, offset + countCharLength)) * charLength
   
   while (currentOffset < maxOffset) {
     result.push(code2number(value.substring(currentOffset, currentOffset + charLength)))
     
     currentOffset = currentOffset + charLength
+  }
+  
+  data.offset = currentOffset
+}
+
+function parseTwoCharData(data: StringValue, result: number[], charLength: 1 | 2 = 1) {
+  const { value, offset } = data
+  let currentOffset = offset + countCharLength
+  const maxOffset = currentOffset + code2number(value.substring(offset, offset + countCharLength)) * (charLength + countCharLength)
+  
+  while(currentOffset < maxOffset) {
+    const char = value.substring(currentOffset, currentOffset + charLength)
+    const countChar = value.substring(currentOffset + charLength, currentOffset + charLength + countCharLength)
+    const number = code2number(char)
+    
+    for (let i = 0, max = code2number(countChar); i < max; i++) {
+      result.push(number)
+    }
+    
+    currentOffset += charLength + countCharLength
   }
   
   data.offset = currentOffset
@@ -38,7 +58,9 @@ const parseString = (data: string) => {
   const result: number[] = []
   const parsers = [
     parseSingleCharData.bind(undefined, stringValue, result),
-    parseSingleCharData.bind(undefined, stringValue, result, 2)
+    parseSingleCharData.bind(undefined, stringValue, result, 2),
+    parseTwoCharData.bind(undefined, stringValue, result),
+    parseTwoCharData.bind(undefined, stringValue, result, 2)
   ]
   
   for (const parser of parsers) {

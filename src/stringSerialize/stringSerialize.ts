@@ -1,4 +1,4 @@
-import { bit4number, codes, maxNumberPerChar } from './constants.ts';
+import { bit4number, codes, maxNumberPerChar } from '../constants.ts';
 
 type SerializeFormat = 'oneChar' | 'twoChar'
 type RepeatValue = [count: number, value: number]
