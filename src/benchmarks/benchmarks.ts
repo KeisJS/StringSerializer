@@ -1,9 +1,9 @@
-import { SimpleTwoChars } from './short/twoCharsValues.ts';
-import { SingleCharAndRepeat } from './short/singleCharAndRepeatValues.ts';
-import { SimpleTwoCharAndRepeat } from './short/twoCharAndRepeatValues.ts';
-import { RandomValues } from './long/randomValues.ts'
-import { SequenceSign } from './long/SequenceSign.ts'
-import { EveryThree } from './long/EveryThree.ts'
+import { SimpleTwoChars } from './SimpleTwoChars.ts';
+import { SingleCharAndRepeat } from './SingleCharAndRepeat.ts';
+import { SimpleTwoCharAndRepeat } from './SimpleTwoCharAndRepeat.ts';
+import { RandomValues } from './RandomValues.ts'
+import { SequenceSign } from './SequenceSign.ts'
+import { EveryThree } from './EveryThree.ts'
 
 const benchmarks = [
   new SimpleTwoChars(),

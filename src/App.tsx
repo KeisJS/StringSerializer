@@ -16,7 +16,7 @@ function App() {
               <th>Исходная строка</th>
               <th>Сжатая строка</th>
               <th>
-                Коэффециет сжатия, %<br />
+                Коэффициент сжатия, %<br />
                 <span className="fw-lighter fst-italic">(Длина сжатой стр / Длина исходной стр) * 100</span>
               </th>
             </tr>
@@ -34,7 +34,7 @@ function App() {
                 <td>{ data.length }</td>
                 <td className="text-break">{ source }</td>
                 <td className="text-break">{ serialized }</td>
-                <td>{ serializeData }</td>
+                <td>{ serializeData }%</td>
               </tr>
             ))}
             </tbody>

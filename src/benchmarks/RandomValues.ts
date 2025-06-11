@@ -1,5 +1,5 @@
-import Benchmark from '../Benchmark.ts'
-import { genRandomNumber } from '../../utils/genRandomNumber.ts'
+import Benchmark from './Benchmark.ts'
+import { genRandomNumber } from '../utils/genRandomNumber.ts'
 
 class RandomValues extends Benchmark {
   description = `Произвольные ${this.length}`

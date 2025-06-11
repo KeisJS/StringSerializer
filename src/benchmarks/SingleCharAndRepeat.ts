@@ -1,4 +1,4 @@
-import Benchmark from '../Benchmark.ts'
+import Benchmark from './Benchmark.ts'
 
 class SingleCharAndRepeat extends Benchmark {
   description = 'числа одного знака с повторением'
