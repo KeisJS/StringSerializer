@@ -1,6 +1,6 @@
 import { describe, expect, test } from 'vitest';
 import stringSerialize from './stringSerialize.ts';
-import createTestData from '../utils/createTestData.ts'
+import { createTestData } from '@/entities/createTestData'
 
 describe('Test String serialize feature', () => {
   const testData = createTestData('forSerialize')

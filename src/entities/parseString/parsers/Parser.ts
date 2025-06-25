@@ -1,4 +1,4 @@
-import type { StringValue } from './StringValue.ts'
+import type { StringValue } from '../StringValue'
 import type { ParserParams } from './types.ts'
 
 abstract class Parser {

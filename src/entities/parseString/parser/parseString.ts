@@ -1,6 +1,5 @@
-import { SequenceParser } from './SequenceParser.ts'
-import { StringValue } from './StringValue.ts'
-import { SequenceRepeatParser } from './SequenceRepeatParser.ts'
+import { StringValue } from '../StringValue'
+import { SequenceParser, SequenceRepeatParser } from '@/entities/parseString/parsers'
 
 const parseString = (data: string) => {
   const result: number[] = []

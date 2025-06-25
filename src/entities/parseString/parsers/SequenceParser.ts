@@ -1,6 +1,6 @@
 import { Parser } from './Parser.ts'
 import type { SequenceParserParams } from './types.ts'
-import { countCharLength } from '../constants.ts'
+import { countCharLength } from '@/entities/config/constants.ts'
 
 class SequenceParser extends Parser {
   private valueLength: SequenceParserParams['valueLength']

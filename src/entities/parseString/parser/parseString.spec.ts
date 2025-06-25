@@ -1,5 +1,5 @@
 import { describe, expect, test } from 'vitest'
-import createTestData from '../utils/createTestData.ts'
+import { createTestData } from '@/entities/createTestData'
 import parseString from './parseString.ts'
 
 describe('Test parse string feature', () => {

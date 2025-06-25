@@ -1,6 +1,6 @@
 import './App.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
-import { benchmarks } from './benchmarks/benchmarks.ts'
+import { benchmarks } from '@/pages/root/benchmarks'
 
 function App() {
   
@@ -45,4 +45,4 @@ function App() {
   )
 }
 
-export default App
+export { App }

@@ -1,4 +1,4 @@
-import type { StringValue } from './StringValue.ts'
+import type { StringValue } from '../StringValue'
 
 type ParserParams  = {
   stringValue: StringValue

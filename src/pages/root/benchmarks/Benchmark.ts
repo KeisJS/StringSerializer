@@ -1,4 +1,4 @@
-import stringSerialize from '../stringSerialize/stringSerialize.ts'
+import stringSerialize from '@/pages/root/stringSerialize/stringSerialize.ts'
 
 type BenchmarkParams = {
   length?: number
