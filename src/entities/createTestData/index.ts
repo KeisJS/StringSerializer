@@ -1,1 +1,1 @@
-export { default as createTestData } from './createTestData'
+export { createTestData } from './createTestData'

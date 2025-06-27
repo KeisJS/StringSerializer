@@ -1,0 +1,1 @@
+export { stringSerialize as serializer } from './stringSerialize.ts'

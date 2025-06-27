@@ -79,4 +79,4 @@ const stringSerialize = (data: number[]) => {
     serializeRepeatNumber(twoCharRepatGroup)
 }
 
-export default stringSerialize
+export { stringSerialize }

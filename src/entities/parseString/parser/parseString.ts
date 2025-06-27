@@ -35,4 +35,4 @@ const parseString = (data: string) => {
   return result
 }
 
-export default parseString
+export { parseString }

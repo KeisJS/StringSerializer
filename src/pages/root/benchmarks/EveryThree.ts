@@ -1,4 +1,4 @@
-import Benchmark from './Benchmark.ts'
+import { Benchmark } from './Benchmark.ts'
 
 class EveryThree extends Benchmark {
   description = 'Каждого числа по 3'

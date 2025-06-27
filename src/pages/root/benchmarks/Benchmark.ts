@@ -1,4 +1,4 @@
-import stringSerialize from '@/pages/root/stringSerialize/stringSerialize.ts'
+import { serializer } from '@/pages/root/stringSerialize'
 
 type BenchmarkParams = {
   length?: number
@@ -26,7 +26,7 @@ abstract class Benchmark {
     this.length = length
     this.data = this.generateData()
     this.source = JSON.stringify(this.data)
-    this.serialized = stringSerialize(this.data)
+    this.serialized = serializer(this.data)
   }
   
   abstract generateData(): number[]
@@ -36,4 +36,4 @@ abstract class Benchmark {
   }
 }
 
-export default Benchmark
+export { Benchmark }

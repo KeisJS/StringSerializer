@@ -1,4 +1,4 @@
-import Benchmark from './Benchmark.ts'
+import { Benchmark } from '@/pages/root/benchmarks/Benchmark.ts'
 
 class SequenceSign extends Benchmark {
   description = `все числа от ${this.start} до ${this.end} включительно`

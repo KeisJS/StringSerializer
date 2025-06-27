@@ -15,4 +15,6 @@ function createTestData(type: 'forSerialize' | 'forParser'): SerializeData[] | P
   return type === 'forSerialize' ? testData : testData.map(([ numbers, serialized]) => [serialized, numbers])
 }
 
-export default createTestData
+export {
+  createTestData
+}
