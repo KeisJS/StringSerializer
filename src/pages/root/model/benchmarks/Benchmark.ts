@@ -1,4 +1,4 @@
-import { serializer } from '@/pages/root/stringSerialize'
+import { serializer } from '../parser/stringSerialize'
 
 type BenchmarkParams = {
   length?: number

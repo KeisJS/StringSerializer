@@ -1,5 +1,5 @@
 import { genRandomNumber } from '@/shared/lib'
-import { Benchmark } from '@/pages/root/benchmarks/Benchmark.ts'
+import { Benchmark } from '@/pages/root/model/benchmarks/Benchmark.ts'
 
 class RandomValues extends Benchmark {
   description = `Произвольные ${this.length}`

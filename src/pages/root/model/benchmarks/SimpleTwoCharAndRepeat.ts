@@ -1,4 +1,4 @@
-import { Benchmark } from '@/pages/root/benchmarks/Benchmark.ts'
+import { Benchmark } from '@/pages/root/model/benchmarks/Benchmark.ts'
 
 class SimpleTwoCharAndRepeat extends Benchmark {
   description = 'числа два знака с повторением'

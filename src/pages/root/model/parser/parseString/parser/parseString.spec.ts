@@ -1,6 +1,6 @@
 import { describe, expect, test } from 'vitest'
-import { createTestData } from '@/entities/createTestData'
-import { parseString } from '@/entities/parseString/parser/parseString.ts'
+import { createTestData } from '@/pages/root/lib/createTestData'
+import { parseString } from '@/pages/root/model/parser/parseString/parser/parseString.ts'
 
 describe('Test parse string feature', () => {
   const testData = createTestData('forParser')

@@ -1,4 +1,4 @@
-import { bit4number, codes, maxNumberPerChar } from '@/entities/config/constants.ts';
+import { bit4number, codes, maxNumberPerChar } from '@/pages/root/model/constants.ts';
 
 type SerializeFormat = 'oneChar' | 'twoChar'
 type RepeatValue = [count: number, value: number]

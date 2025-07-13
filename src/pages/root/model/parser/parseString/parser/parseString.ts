@@ -1,5 +1,5 @@
 import { StringValue } from '../StringValue'
-import { SequenceParser, SequenceRepeatParser } from '@/entities/parseString/parsers'
+import { SequenceParser, SequenceRepeatParser } from '@/pages/root/model/parser/parseString/parsers'
 
 const parseString = (data: string) => {
   const result: number[] = []

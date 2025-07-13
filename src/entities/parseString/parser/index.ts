@@ -1,1 +1,0 @@
-export { parseString as parser } from './parseString'

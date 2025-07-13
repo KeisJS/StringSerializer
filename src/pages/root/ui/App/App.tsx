@@ -1,6 +1,5 @@
-import './App.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
-import { benchmarks } from '@/pages/root/benchmarks'
+import { benchmarks } from '../../model/benchmarks'
 
 function App() {
   

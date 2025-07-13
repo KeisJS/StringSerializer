@@ -1,4 +1,4 @@
-import { bit4number, codes } from '@/entities/config/constants.ts'
+import { bit4number, codes } from '@/pages/root/model/constants.ts'
 
 type Params = {
   value: string
